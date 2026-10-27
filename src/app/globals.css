@@ -1,0 +1,219 @@
+@import "tailwindcss";
+
+@theme {
+  /* Custom breakpoint: xs = 380px for very small phones */
+  --breakpoint-xs: 380px;
+
+  --color-forest: #102A21;
+  --color-forest-deep: #0B1D17;
+  --color-forest-surface: #17382C;
+  --color-lime: #D4F52B;
+  --color-lime-hover: #C2E322;
+  --color-offwhite: #F3F5ED;
+  --color-nearblack: #111713;
+  --color-mutedgreen: #C5D4CA;
+  --color-softborder: #D6DDD6;
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* navbar height: ~56px mobile, ~64px desktop — add breathing room */
+    scroll-padding-top: 4.5rem;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  @media (min-width: 640px) {
+    html {
+      scroll-padding-top: 5.5rem;
+    }
+  }
+
+  body {
+    background-color: var(--color-offwhite);
+    color: var(--color-nearblack);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    /* Prevent mobile tap highlight on interactive elements */
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Ensure images and media don't overflow */
+  img,
+  video,
+  svg {
+    max-width: 100%;
+    height: auto;
+  }
+
+  ::selection {
+    background-color: #D4F52B;
+    color: #111713;
+  }
+
+  /* Visible focus indicators for keyboard navigation */
+  :focus-visible {
+    outline: 2px solid #D4F52B;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+/* ============================================
+   Background Grids
+   ============================================ */
+.bg-grid-dark {
+  background-image:
+    linear-gradient(to right, rgba(212, 245, 43, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(212, 245, 43, 0.07) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+@media (min-width: 640px) {
+  .bg-grid-dark {
+    background-size: 40px 40px;
+  }
+}
+
+.bg-grid-light {
+  background-image:
+    linear-gradient(to right, rgba(17, 23, 19, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(17, 23, 19, 0.05) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+@media (min-width: 640px) {
+  .bg-grid-light {
+    background-size: 32px 32px;
+  }
+}
+
+/* ============================================
+   Editorial Brutalism Shadows
+   ============================================ */
+.brutal-card {
+  border: 2px solid #111713;
+  box-shadow: 4px 4px 0px #111713;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (min-width: 640px) {
+  .brutal-card {
+    box-shadow: 5px 5px 0px #111713;
+  }
+}
+
+.brutal-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px #111713;
+}
+
+@media (min-width: 640px) {
+  .brutal-card:hover {
+    box-shadow: 7px 7px 0px #111713;
+  }
+}
+
+.brutal-card-dark {
+  border: 2px solid #D4F52B;
+  box-shadow: 4px 4px 0px #D4F52B;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (min-width: 640px) {
+  .brutal-card-dark {
+    box-shadow: 5px 5px 0px #D4F52B;
+  }
+}
+
+.brutal-card-dark:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px #D4F52B;
+}
+
+@media (min-width: 640px) {
+  .brutal-card-dark:hover {
+    box-shadow: 7px 7px 0px #D4F52B;
+  }
+}
+
+.brutal-button {
+  border: 2px solid #111713;
+  box-shadow: 3px 3px 0px #111713;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+@media (min-width: 640px) {
+  .brutal-button {
+    box-shadow: 4px 4px 0px #111713;
+  }
+}
+
+.brutal-button:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0px #111713;
+}
+
+@media (min-width: 640px) {
+  .brutal-button:hover {
+    box-shadow: 6px 6px 0px #111713;
+  }
+}
+
+.brutal-button:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px #111713;
+}
+
+/* ============================================
+   Prevent horizontal overflow globally
+   ============================================ */
+.overflow-x-safe {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+/* ============================================
+   Mobile-safe word break for long strings
+   (e.g. email addresses, long tech names)
+   ============================================ */
+.word-break-safe {
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+/* ============================================
+   Reduced Motion
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .brutal-card:hover,
+  .brutal-card-dark:hover,
+  .brutal-button:hover {
+    transform: none !important;
+    box-shadow: inherit !important;
+  }
+}
